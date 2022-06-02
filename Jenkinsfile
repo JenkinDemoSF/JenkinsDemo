@@ -42,8 +42,7 @@ node {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}else{
 			   //rmsg = bat returnStdout: true, script: "\"${toolbelt}\"sfdx force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-				rmsg = bat returnStdout: true, script: "\"${toolbelt}\"sfdx force:source:deploy -p 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Basic-Demo_QA\\force-app\\main\
-				default' -u ${HUB_ORG}"
+				rmsg = bat returnStdout: true, script: "\"${toolbelt}\"sfdx force:source:deploy -m ApexClass -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
