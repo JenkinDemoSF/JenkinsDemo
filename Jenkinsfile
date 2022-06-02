@@ -19,13 +19,23 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = tool 'toolbelt'
 
-    stage('checkout source') {
+    stage('Checkout source') {
+	    println('-------------------SCM Checkout Start-----------------')
         // when running in multi-branch job, one must issue this command
         checkout scm
+	    println('-------------------SCM Checkout End-----------------')
     }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
-	    stage('Validate Code') {
+	    stage('Code Review') {
+		    println('-------------------Code Review Start-----------------')
+		    
+		    println('-------------------Code Review End-----------------')
+	    }
+	    stage('Validate Deployment') {
+		    println('-------------------Validate Deployment Start-----------------')
+		    
+		    println('-------------------Validate Deployment End-----------------')
 	    }
         stage('Deploye Code') {
             if (isUnix()) {
@@ -49,8 +59,13 @@ node {
 			}
 			  
             printf rmsg
-            println('Hello from a Job DSL script!')
+            println('-------------------Deployment Completed-----------------')
             println(rmsg)
         }
+	    stage('Automated Testing') {
+		    println('-------------------Automated Testing Start-----------------')
+		    
+		    println('-------------------Automated Testing End-----------------')
+	    }
     }
 }
